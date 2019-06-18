@@ -1,18 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
 import Page from '../components/Page';
 import PageCollumn from '../components/PageCollumn';
 import { LIGHT_PURPLE, DARK_PURPLE } from '../defaults/Colors';
+import ApplicationCalendar from '../components/ApplicationCalendar';
 
 const Home = () => {
   return (
     <Page>
       <PageCollumn
         styles={{
+          alignItems: 'center',
           backgroundColor: LIGHT_PURPLE,
+          display: 'flex',
+          justifyContent: 'center',
           width: '70%',
         }}>
-        Test :)
+        <ApplicationCalendar onChange={console.log} />
       </PageCollumn>
       <PageCollumn
         styles={{
@@ -23,9 +26,5 @@ const Home = () => {
     </Page>
   )
 };
-
-const Title = styled.h1`
-  color: red;
-`;
 
 export default Home;

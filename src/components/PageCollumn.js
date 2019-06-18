@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 const PageCollumn = styled.div`
   height: 100vh;
   ${({ styles }) => css`
+    ${styles.alignItems ? `align-items: ${styles.alignItems};` : ''}
     background-color: ${styles.backgroundColor};
+    ${styles.display ? `display: ${styles.display};` : ''}
+    ${styles.justifyContent ? `justify-content: ${styles.justifyContent};` : ''}
     width: ${styles.width};
   `}
 `;

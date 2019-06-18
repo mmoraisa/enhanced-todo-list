@@ -1,0 +1,86 @@
+.react-calendar {
+  width: 430px;
+}
+
+.react-calendar__navigation button {
+  align-items: center;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  font-size: 28px;
+  justify-content: center;
+  line-height: 28px;
+  outline: none;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  font-size: 14px;
+  line-height: 14px;
+  margin: 20px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+.react-calendar__month-view__days__day {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  height: 60px;
+  line-height: 14px;
+  justify-content: center;
+  outline: none;
+}
+
+.react-calendar__month-view__days__day abbr {
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  transition: .25s all ease;
+  width: 30px;
+}
+
+.react-calendar__month-view__days__day:hover abbr {
+  background: #00000024;
+}
+
+.react-calendar__month-view__days__day.react-calendar__tile--active abbr {
+  background: #ec4bbb;
+  border-color: #892b7d;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #ffffff57;
+}
+
+.react-calendar__year-view__months__month,
+.react-calendar__decade-view__years__year,
+.react-calendar__century-view__decades__decade {
+  background: none;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  height: 50px;
+  margin-top: 20px;
+  outline: none;
+  text-transform: uppercase;
+  transition: .25s all ease;
+}
+
+.react-calendar__year-view__months__month:hover,
+.react-calendar__decade-view__years__year:hover,
+.react-calendar__century-view__decades__decade:hover {
+  background: #00000024;
+}
