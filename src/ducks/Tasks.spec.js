@@ -2,6 +2,7 @@ import Tasks, {
   ADD_TASK, addTask,
   DELETE_TASK, deleteTask,
   UPDATE_TASK, updateTask,
+  UPDATE_TASK_STATUS, updateTaskStatus,
 } from './Tasks';
 import { getDateKey } from '../utility/Utils';
 import { pureTaskObject } from '../classes/Task.mock';
@@ -19,6 +20,11 @@ describe('(Ducks) Tasks', () => {
     it('deleteTask returns the correct Action Type', () => {
       expect(deleteTask().type)
         .toBe(DELETE_TASK);
+    });
+
+    it('updateTaskStatus returns the correct Action Type', () => {
+      expect(updateTaskStatus().type)
+        .toBe(UPDATE_TASK_STATUS);
     });
 
     it('updateTask returns the correct Action Type', () => {
@@ -90,6 +96,33 @@ describe('(Ducks) Tasks', () => {
           const taskObject = dateObject[pureTaskObject.id];
 
           expect(taskObject).toBeUndefined();
+        });
+
+        it('UPDATE_TASK_STATUS updates Task status in data', () => {
+          const date = new Date();
+          const dateKey = getDateKey(date);
+
+          const state = {
+            data: {
+              [dateKey]: {
+                [pureTaskObject.id]: new Task(
+                  pureTaskObject.id,
+                  pureTaskObject.description,
+                  pureTaskObject.title
+                )
+              }
+            }
+          };
+
+          const dateObject = Tasks(state, {
+            type: UPDATE_TASK_STATUS,
+            date,
+            id: pureTaskObject.id,
+            done: true,
+          }).data[dateKey];
+
+          const taskObject = dateObject[pureTaskObject.id];
+          expect(taskObject.done).toBe(true);
         });
 
         it('UPDATE_TASK updates Task properties in data', () => {

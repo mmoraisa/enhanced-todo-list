@@ -6,6 +6,7 @@ import Task from '../classes/Task';
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
+export const UPDATE_TASK_STATUS = 'UPDATE_TASK_STATUS';
 
 /* Action Creators */
 export const addTask = (date, task) => {
@@ -20,38 +21,39 @@ export const updateTask = (date, id, task) => {
   return { type: UPDATE_TASK, date, id, task };
 }
 
+export const updateTaskStatus = (date, id, done) => {
+  return { type: UPDATE_TASK_STATUS, date, id, done };
+}
+
 /* Initial State */
 const INITIAL_STATE = {
   data: {
     '2019-06-24': {
-      '1': {
-        id: 1,
-        description: 'Et in magna dolore velit quis incididunt amet anim nulla aliqua sint. Officia nostrud occaecat magna aliqua dolor adipisicing ullamco veniam consequat eiusmod commodo et magna deserunt. Pariatur fugiat exercitation cillum dolore dolore adipisicing consectetur velit. Lorem veniam anim ut aliquip aliqua. Consectetur consequat laboris nostrud quis. Duis adipisicing deserunt enim cupidatat tempor fugiat proident anim sunt magna nisi. Dolore laborum incididunt ut cillum.',
-        title: 'Reprehenderit eu proident Lorem non reprehenderit tempor.',
-        done: true,
-        time: {
+      '1': new Task(
+        1,
+        'Eiusmod minim sint do et id nisi enim dolor id. Consectetur in nostrud sit tempor aliquip officia nostrud enim fugiat sit amet incididunt excepteur ullamco. Ad velit mollit consectetur magna culpa. Nostrud incididunt nulla et tempor ut ipsum aliquip qui qui ad incididunt eu qui.',
+        'Esse Lorem anim elit consequat cupidatat tempor dolore nisi cillum.',
+        {
           hour: '10',
           minute: '30',
-          system: 'PM'
+          system: 'PM',
         }
-      },
-      '2': {
-        id: 2,
-        description: 'Esse cupidatat mollit velit irure mollit enim id cupidatat ullamco aliqua mollit voluptate exercitation. Qui dolore cillum veniam qui veniam aute ullamco exercitation quis. Sunt et consectetur consectetur qui incididunt.',
-        title: 'Eiusmod sit enim deserunt occaecat officia aliquip aliqua ea nostrud eiusmod consectetur labore laborum.',
-      }
-    },
-    '2019-06-03': {
-      '3': {
-        id: 3,
-        description: 'Deserunt veniam fugiat duis laboris. Aliquip nostrud aliqua laboris est occaecat officia occaecat duis aliqua. Consectetur qui laborum excepteur cupidatat eu ea.',
-        title: 'Anim veniam dolore',
-      },
-      '4': {
-        id: 4,
-        description: 'Tempor ullamco culpa eu magna. Officia est ut sunt consequat sit et aliqua quis esse. Magna enim ea fugiat cillum Lorem voluptate esse enim non occaecat dolore. Aliqua ullamco commodo ea ipsum id enim et ad exercitation cupidatat quis minim velit.',
-        title: 'Voluptate mollit',
-      }
+      ),
+      '2': new Task(
+        2,
+        'Voluptate irure magna voluptate adipisicing voluptate ipsum est id. Culpa qui Lorem minim in esse exercitation. Culpa laboris aute ullamco fugiat. Laborum veniam consectetur consectetur nostrud commodo proident sit qui consectetur eiusmod aute.',
+        'Amet veniam eu ad mollit ex reprehenderit incididunt culpa.'
+      ),
+      '3': new Task(
+        3,
+        'Voluptate irure magna voluptate adipisicing voluptate ipsum est id. Culpa qui Lorem minim in esse exercitation. Culpa laboris aute ullamco fugiat. Laborum veniam consectetur consectetur nostrud commodo proident sit qui consectetur eiusmod aute.',
+        'Amet veniam eu ad mollit ex reprehenderit incididunt culpa.'
+      ),
+      '4': new Task(
+        4,
+        'Voluptate irure magna voluptate adipisicing voluptate ipsum est id. Culpa qui Lorem minim in esse exercitation. Culpa laboris aute ullamco fugiat. Laborum veniam consectetur consectetur nostrud commodo proident sit qui consectetur eiusmod aute.',
+        'Amet veniam eu ad mollit ex reprehenderit incididunt culpa.'
+      )
     }
   },
 };
@@ -59,9 +61,10 @@ const INITIAL_STATE = {
 /* Reducer */
 export default function reducer(state = INITIAL_STATE, action) {
 
-  const { _, date, id, task, type } = action;
+  const { _, date, done, id, task, type } = action;
 
-  let dateKey;
+  let foundTask,
+      dateKey;
 
   if(date) {
     dateKey = getDateKey(date);
@@ -94,6 +97,21 @@ export default function reducer(state = INITIAL_STATE, action) {
           [dateKey]: {
             ...state.data[dateKey],
             [id]: _,
+          },
+        },
+      };
+    case UPDATE_TASK_STATUS:
+
+      foundTask = state.data[dateKey][id];
+      foundTask.setDone(done);
+
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [dateKey]: {
+            ...state.data[dateKey],
+            [id]: foundTask,
           },
         },
       };
