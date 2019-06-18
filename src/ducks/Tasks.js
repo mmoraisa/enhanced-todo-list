@@ -22,7 +22,7 @@ export const updateTask = (date, id, task) => {
 
 /* Initial State */
 const INITIAL_STATE = {
-  data: {}
+  data: {},
 };
 
 /* Reducer */
