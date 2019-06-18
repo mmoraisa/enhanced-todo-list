@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 import Home from './pages/Home';
 import { createGlobalStyle } from 'styled-components';
 import { WHITE } from './defaults/Colors';
+import store from './store';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -14,10 +16,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = () => (
-  <Fragment>
+  <Provider store={store}>
     <GlobalStyle />
     <Home />
-  </Fragment>
+  </Provider>
 );
 
 export default App;
