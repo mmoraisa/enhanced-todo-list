@@ -1,6 +1,7 @@
 import Tasks,
   {
     ADD_TASK, addTask,
+    DELETE_TASK, deleteTask,
     UPDATE_TASK, updateTask,
   } from './Tasks';
 import { getDateKey } from '../utility/Utils';
@@ -14,6 +15,11 @@ describe('(Ducks) Tasks', () => {
     it('addTask returns the correct Action Type', () => {
       expect(addTask().type)
         .toBe(ADD_TASK);
+    });
+
+    it('deleteTask returns the correct Action Type', () => {
+      expect(deleteTask().type)
+        .toBe(DELETE_TASK);
     });
 
     it('updateTask returns the correct Action Type', () => {
@@ -60,7 +66,34 @@ describe('(Ducks) Tasks', () => {
           expect(taskObject).toBeInstanceOf(Task);
         });
 
-        it('UPDATE_TASK add a new Task to data', () => {
+        it('DELETE_TASK removes the Task from data', () => {
+          const date = new Date();
+          const dateKey = getDateKey(date);
+
+          const state = {
+            data: {
+              [dateKey]: {
+                [pureTaskObject.id]: new Task(
+                  pureTaskObject.id,
+                  pureTaskObject.description,
+                  pureTaskObject.title
+                )
+              }
+            }
+          };
+
+          const dateObject = Tasks(state, {
+            type: DELETE_TASK,
+            date,
+            id: pureTaskObject.id
+          }).data[dateKey];
+
+          const taskObject = dateObject[pureTaskObject.id];
+
+          expect(taskObject).toBeUndefined();
+        });
+
+        it('UPDATE_TASK updates Task properties in data', () => {
           const date = new Date();
           const dateKey = getDateKey(date);
 

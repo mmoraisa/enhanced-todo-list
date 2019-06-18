@@ -4,11 +4,16 @@ import Task from '../classes/Task';
 
 /* Action Types */
 export const ADD_TASK = 'ADD_TASK';
+export const DELETE_TASK = 'DELETE_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 
 /* Action Creators */
 export const addTask = (date, task) => {
   return { type: ADD_TASK, date, task };
+}
+
+export const deleteTask = (date, id) => {
+  return { type: DELETE_TASK, date, id };
 }
 
 export const updateTask = (date, id, task) => {
@@ -23,7 +28,7 @@ const INITIAL_STATE = {
 /* Reducer */
 export default function reducer(state = INITIAL_STATE, action) {
 
-  const { date, id, task, type } = action;
+  const { _, date, id, task, type } = action;
 
   let dateKey;
 
@@ -47,8 +52,19 @@ export default function reducer(state = INITIAL_STATE, action) {
               task.description,
               task.title
             )
-          }
-        }
+          },
+        },
+      };
+    case DELETE_TASK:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [dateKey]: {
+            ...state.data[dateKey],
+            [id]: _,
+          },
+        },
       };
     case UPDATE_TASK:
       return {
@@ -62,8 +78,8 @@ export default function reducer(state = INITIAL_STATE, action) {
               task.description,
               task.title
             )
-          }
-        }
+          },
+        },
       };
     default:
       return state;
