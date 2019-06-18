@@ -6,7 +6,7 @@
   align-items: center;
   background: none;
   border: none;
-  color: #ffffff;
+  color: #ffffffc7;
   cursor: pointer;
   display: flex;
   font-size: 28px;
@@ -53,6 +53,14 @@
 
 .react-calendar__month-view__days__day:hover abbr {
   background: #00000024;
+}
+
+.react-calendar__month-view__days__day.react-calendar__tile.--is-today:not(.react-calendar__tile--active) abbr {
+  background: #ffffff3b;
+}
+
+.react-calendar__month-view__days__day.react-calendar__tile.--has-tasks abbr {
+  border-color: #892b7d;
 }
 
 .react-calendar__month-view__days__day.react-calendar__tile--active abbr {

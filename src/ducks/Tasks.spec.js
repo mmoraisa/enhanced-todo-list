@@ -1,9 +1,8 @@
-import Tasks,
-  {
-    ADD_TASK, addTask,
-    DELETE_TASK, deleteTask,
-    UPDATE_TASK, updateTask,
-  } from './Tasks';
+import Tasks, {
+  ADD_TASK, addTask,
+  DELETE_TASK, deleteTask,
+  UPDATE_TASK, updateTask,
+} from './Tasks';
 import { getDateKey } from '../utility/Utils';
 import { pureTaskObject } from '../classes/Task.mock';
 import Task from '../classes/Task';

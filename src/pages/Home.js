@@ -1,20 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { addTask } from '../ducks/Tasks';
 import Page from '../components/Page';
-import PageCollumn from '../components/PageCollumn';
+import PageColumn from '../components/PageColumn';
 import { LIGHT_PURPLE, DARK_PURPLE } from '../defaults/Colors';
 import ApplicationCalendar from '../components/ApplicationCalendar';
+import SelectedDateTasks from '../components/SelectedDateTasks';
 
 const Home = () => {
-
-  const dispatch = useDispatch();
-
-  dispatch(addTask(new Date(), { description: 'descricao', title: 'title' }));
-
   return (
     <Page>
-      <PageCollumn
+      <PageColumn
         styles={{
           alignItems: 'center',
           backgroundColor: LIGHT_PURPLE,
@@ -22,14 +16,17 @@ const Home = () => {
           justifyContent: 'center',
           flex: 6,
         }}>
-        <ApplicationCalendar onChange={console.log} />
-      </PageCollumn>
-      <PageCollumn
+        <ApplicationCalendar />
+      </PageColumn>
+      <PageColumn
         styles={{
           backgroundColor: DARK_PURPLE,
+          boxSizing: 'border-box',
           flex: 4,
+          padding: '40px',
         }}>
-      </PageCollumn>
+        <SelectedDateTasks />
+      </PageColumn>
     </Page>
   )
 };

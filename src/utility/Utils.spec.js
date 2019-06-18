@@ -11,4 +11,18 @@ describe('Utils', () => {
 
   });
 
+  describe('(Function) getOrdinalSup', () => {
+
+    const ordinals = ['th', 'st', 'nd', 'rd'];
+
+    it("getOrdinalSup returns one of ordinal strings ['th', 'st', 'nd', 'rd']", () => {
+
+      [...new Array(31)].forEach((i, index) => {
+        expect(ordinals).toContain(Utils.getOrdinalSup(index + 1));
+      });
+
+    });
+
+  });
+
 });
