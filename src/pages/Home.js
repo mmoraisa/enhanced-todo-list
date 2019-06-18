@@ -13,14 +13,14 @@ const Home = () => {
           backgroundColor: LIGHT_PURPLE,
           display: 'flex',
           justifyContent: 'center',
-          width: '70%',
+          flex: 6,
         }}>
         <ApplicationCalendar onChange={console.log} />
       </PageCollumn>
       <PageCollumn
         styles={{
           backgroundColor: DARK_PURPLE,
-          width: '30%',
+          flex: 4,
         }}>
       </PageCollumn>
     </Page>

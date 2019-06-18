@@ -7,6 +7,7 @@ const PageCollumn = styled.div`
     ${styles.alignItems ? `align-items: ${styles.alignItems};` : ''}
     background-color: ${styles.backgroundColor};
     ${styles.display ? `display: ${styles.display};` : ''}
+    ${styles.flex ? `flex: ${styles.flex};` : ''}
     ${styles.justifyContent ? `justify-content: ${styles.justifyContent};` : ''}
     width: ${styles.width};
   `}
@@ -15,7 +16,7 @@ const PageCollumn = styled.div`
 PageCollumn.propTypes = {
   styles: PropTypes.shape({
     backgroundColor: PropTypes.string.isRequired,
-    width: PropTypes.string.isRequired,
+    flex: PropTypes.number.isRequired,
   }).isRequired,
 };
 
